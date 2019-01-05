@@ -9,6 +9,7 @@
 Metrics/BlockLength:
   Max: 26
 
+# Compact style is forcing correct requiring files
 Style/ClassAndModuleChildren:
   AutoCorrect: true
   EnforcedStyle: compact
