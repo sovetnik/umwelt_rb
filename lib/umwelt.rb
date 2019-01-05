@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-require 'umwelt/cli'
-require 'umwelt/version'
+require 'hanami/cli'
 
 module Umwelt
+  require 'umwelt/cli'
+  require 'umwelt/version'
   # Your code goes here...
 end
