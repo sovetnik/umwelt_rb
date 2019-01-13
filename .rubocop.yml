@@ -7,7 +7,9 @@
 # versions of RuboCop, may require this file to be generated again.
 
 Metrics/BlockLength:
-  Max: 26
+  Exclude:
+    - 'spec/**/**/*_spec.rb'
+    - 'umwelt.gemspec'
 
 # Compact style is forcing correct requiring files
 Style/ClassAndModuleChildren:
