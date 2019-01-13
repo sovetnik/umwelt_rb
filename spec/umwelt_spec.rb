@@ -7,4 +7,3 @@ describe Umwelt do
     _(Umwelt::VERSION).must_be_instance_of String
   end
 end
-
