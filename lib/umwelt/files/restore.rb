@@ -10,22 +10,21 @@ module Umwelt::Files
     expose :struct, :full_path
 
     def initialize(path: '.umwelt',
-                   builder: Struct)
+                   mapper: Struct)
       @path = path
-      @builder = builder
+      @mapper = mapper
     end
 
     def call(project_id)
-      @full_path = full_path(project_id)
-      @struct = struct parse(read_file)
+      @struct = struct parse read full_path project_id
     end
 
     private
 
-    def read_file
-      @full_path.read
+    def read(path)
+      path.read
     rescue Errno::ENOENT
-      error! "Failed reading #{@full_path}"
+      error! "Failed reading #{path}"
     end
 
     def parse(str)
@@ -35,7 +34,15 @@ module Umwelt::Files
     end
 
     def struct(struct_hash)
-      @builder.new(struct_hash)
+      clean @mapper.new.call(struct_hash)
+    end
+
+    def clean(result)
+      if result.success?
+        result.struct
+      else
+        error! result.errors
+      end
     end
 
     def full_path(project_id)

@@ -15,23 +15,29 @@ describe Umwelt::Files::Episodes::Store do
 
   let(:phase_id) { 13 }
 
+  let(:finished) { Time.now }
+
   let(:phase) do
-    { id: 13,
+    Struct::Phase.new(
+      id: 13,
       parent_id: 5,
       merge_id: nil,
       user_id: 1,
-      finished_at: Time.now.to_s,
-      name: 'zeta',
-      description: 'Dank foetid gambrel antediluvian indescribable.' }
+      finished_at: Time,
+      name: 'feature',
+      description: 'implementing feature'
+    )
   end
 
   let(:fragment) do
-    { id: 4,
-      abstract_id: 3,
-      context_id: 2,
+    Struct::Fragment.new(
+      id: 13,
+      abstract_id: 5,
+      context_id: nil,
       kind: 'space',
-      body: 'member',
-      note: 'description of member' }
+      body: 'foo',
+      note: 'foo bar baz'
+    )
   end
 
   let(:episode) do
@@ -42,7 +48,15 @@ describe Umwelt::Files::Episodes::Store do
     )
   end
 
-  let(:content) { JSON.pretty_generate episode.to_h }
+  let(:episode_data) do
+    Struct::Episode.new(
+      phase: phase.to_h,
+      engaged: [fragment.to_h],
+      forgotten: [42]
+    ).to_h
+  end
+
+  let(:content) { JSON.pretty_generate episode_data }
 
   after do
     path.delete

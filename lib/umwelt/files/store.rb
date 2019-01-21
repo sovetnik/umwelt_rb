@@ -18,13 +18,29 @@ module Umwelt::Files
     def call(id, struct)
       mkpath directory_path
 
-      full_path(id).write serialize(struct)
+      full_path(id).write serialize(destruct(struct))
     end
 
     private
 
     def serialize(struct)
-      JSON.pretty_generate struct.to_h
+      JSON.pretty_generate struct
+    end
+
+    def destruct(obj)
+      obj.is_a?(Struct) ? destruct_members(obj.to_h) : obj
+    end
+
+    def destruct_members(hash)
+      hash.transform_values do |value|
+        if value.is_a?(Array)
+          value.map { |member| destruct(member) }
+        elsif value.is_a? Time
+          value.to_s
+        else
+          destruct(value)
+        end
+      end
     end
 
     def full_path(id)

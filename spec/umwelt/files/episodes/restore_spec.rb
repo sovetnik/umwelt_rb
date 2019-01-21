@@ -16,22 +16,26 @@ describe Umwelt::Files::Episodes::Restore do
   let(:phase_id) { 13 }
 
   let(:phase) do
-    { id: 13,
+    Struct::Phase.new(
+      id: 13,
       parent_id: 5,
       merge_id: nil,
       user_id: 1,
       finished_at: Time.now.to_s,
-      name: 'zeta',
-      description: 'Dank foetid gambrel antediluvian indescribable.' }
+      name: 'feature',
+      description: 'implementing feature'
+    )
   end
 
   let(:fragment) do
-    { id: 4,
+    Struct::Fragment.new(
+      id: 4,
       abstract_id: 3,
       context_id: 2,
       kind: 'space',
       body: 'member',
-      note: 'description of member' }
+      note: 'description of member'
+    )
   end
 
   let(:episode) do
@@ -42,10 +46,10 @@ describe Umwelt::Files::Episodes::Restore do
     )
   end
 
-  let(:content) { JSON.pretty_generate episode.to_h }
-
   before do
-    Umwelt::Files::Episodes::Store.new(path: tmp).call(phase_id, episode)
+    Umwelt::Files::Episodes::Store
+      .new(path: tmp)
+      .call(phase_id, episode)
   end
 
   after do
@@ -60,6 +64,22 @@ describe Umwelt::Files::Episodes::Restore do
     it 'exposes episode' do
       _(subject.struct).must_be_kind_of Struct::Episode
       _(subject.struct).must_equal episode
+    end
+  end
+
+  describe 'when data for struct is not exist' do
+    let(:episode) { { shit: :happens } }
+
+    it 'should be failed' do
+      _(subject.failure?).must_equal true
+    end
+
+    it 'fails with errors' do
+      _(subject.errors).must_equal [
+        'Episode',
+        'wrong number of arguments (given 1, expected 0)',
+        nil
+      ]
     end
   end
 

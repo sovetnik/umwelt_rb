@@ -16,28 +16,41 @@ describe Umwelt::Files::Histories::Store do
   let(:project_id) { 42.to_s }
 
   let(:project) do
-    { name: 'Helen',
-      description: 'Durable Rubber Watch' }
+    Struct::Project.new(
+      name: 'chaos',
+      description: 'Viva Discordia'
+    )
   end
 
+  let(:finished) { Time.now }
+
   let(:phase) do
-    { id: 13,
+    Struct::Phase.new(
+      id: 13,
       parent_id: 5,
       merge_id: nil,
       user_id: 1,
-      finished_at: Time.now.to_s,
-      name: 'zeta',
-      description: 'Dank foetid gambrel antediluvian indescribable.' }
+      finished_at: finished,
+      name: 'feature',
+      description: 'implementing feature'
+    )
   end
 
   let(:history) do
     Struct::History.new(
-      project: {},
+      project: project,
       phases: [phase]
     )
   end
 
-  let(:content) { JSON.pretty_generate history.to_h }
+  let(:history_data) do
+    Struct::History.new(
+      project: project.to_h,
+      phases: [phase.to_h]
+    ).to_h
+  end
+
+  let(:content) { JSON.pretty_generate history_data }
 
   after do
     path.delete
