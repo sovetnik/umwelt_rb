@@ -3,6 +3,8 @@
 $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 require 'umwelt'
 
+require 'fabrication'
+require 'faker'
 require 'minitest/autorun'
 require 'minitest/reporters'
 
