@@ -5,6 +5,7 @@ Struct.new(
   :id,
   :abstract_id,
   :context_id,
+  :origin_id,
   :kind,
   :body,
   :note,
