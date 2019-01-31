@@ -12,9 +12,6 @@ module Umwelt::History
     end
 
     def call(episodes)
-      # engaged = episodes.collect &:engaged
-      # forgotten = episodes.collect &:forgotten
-
       episodes.each do |episode|
         index_engaged(episode.engaged)
         collect_forgotten(episode.forgotten)
