@@ -1,0 +1,25 @@
+# frozen_string_literal: true
+
+module Umwelt::Tree
+  class Tank
+    def initialize(index: {},
+                   childs_ids: {})
+      @index = index
+      @childs_ids = childs_ids
+    end
+
+    def node(id)
+      builder.call(@index[id])
+    end
+
+    def childs(id)
+      @childs_ids[id].map { |child_id| node(child_id) }
+    end
+
+    private
+
+    def builder
+      @builder ||= Umwelt::Nodes::Build.new(self)
+    end
+  end
+end
