@@ -6,8 +6,8 @@ Fabricator(:phase, from: Struct::Phase) do
   merge_id { nil }
   user_id { Fabricate.sequence(:user) }
   finished_at Time.now
-  name { Faker::Lovecraft.deity }
-  description { Faker::Lovecraft.sentence }
+  name { Faker::Books::Lovecraft.deity }
+  description { Faker::Books::Lovecraft.sentence }
   finished_at { Time.now }
 end
 
