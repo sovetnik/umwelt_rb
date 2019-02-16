@@ -15,7 +15,7 @@ Minitest::Reporters.use! [
 
 class MiniTest::Mock
   def respond_to_missing?(symbol, include_private = false)
-    @expected_calls.key? symbol || super
+    @expected_calls.key?(symbol) || super
   end
 end
 
