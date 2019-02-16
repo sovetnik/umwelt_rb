@@ -15,12 +15,7 @@ describe Umwelt::Files::Histories::Store do
 
   let(:project_id) { 42.to_s }
 
-  let(:project) do
-    Struct::Project.new(
-      name: 'chaos',
-      description: 'Viva Discordia'
-    )
-  end
+  let(:project) { Fabricate(:project) }
 
   let(:finished) { Time.now }
 

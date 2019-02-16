@@ -1,14 +1,9 @@
 # frozen_string_literal: true
 
-require 'hanami/interactor'
 require_relative '../structs/phase'
 
 module Umwelt::Mappers
   class Phase < Base
-    include Hanami::Interactor
-
-    expose :struct
-
     def call(data)
       @struct = fill(
         Struct::Phase,

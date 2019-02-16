@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'hanami/interactor'
 require_relative '../structs/phase'
 require_relative '../structs/fragment'
 

@@ -8,3 +8,4 @@ require_relative './files/restore'
 
 require_relative './files/episodes'
 require_relative './files/histories'
+require_relative './files/project'

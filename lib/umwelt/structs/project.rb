@@ -2,8 +2,9 @@
 
 Struct.new(
   'Project',
-  :user_id,
-  :name,
+  :user_name,
+  :project_name,
+  :project_id,
   :description,
   keyword_init: true
 )

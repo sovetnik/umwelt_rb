@@ -16,7 +16,7 @@ module Umwelt::Files
     end
 
     def call(id, struct)
-      mkpath directory_path
+      mkpath umwelt_root_path
 
       full_path(id).write serialize(destruct(struct))
     end
@@ -44,10 +44,10 @@ module Umwelt::Files
     end
 
     def full_path(id)
-      directory_path / "#{id}.json"
+      umwelt_root_path / "#{id}.json"
     end
 
-    def directory_path
+    def umwelt_root_path
       Pathname.pwd / @path
     end
   end

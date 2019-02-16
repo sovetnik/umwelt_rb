@@ -46,10 +46,10 @@ module Umwelt::Files
     end
 
     def full_path(project_id)
-      histories_path / "#{project_id}.json"
+      umwelt_root_path / "#{project_id}.json"
     end
 
-    def histories_path
+    def umwelt_root_path
       Pathname.pwd / @path
     end
   end

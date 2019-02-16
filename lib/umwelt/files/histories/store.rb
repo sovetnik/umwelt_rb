@@ -3,7 +3,7 @@
 module Umwelt::Files::Histories
   class Store < Umwelt::Files::Store
     def initialize(path: '.umwelt/histories')
-      @path = path
+      super
     end
   end
 end

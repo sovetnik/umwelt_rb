@@ -24,12 +24,7 @@ describe Umwelt::Mappers::History do
     )
   end
 
-  let(:project) do
-    Struct::Project.new(
-      name: 'chaos',
-      description: 'Viva Discordia'
-    )
-  end
+  let(:project) { Fabricate(:project) }
 
   let(:phase) do
     Struct::Phase.new(

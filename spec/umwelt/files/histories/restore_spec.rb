@@ -16,10 +16,7 @@ describe Umwelt::Files::Histories::Restore do
   let(:project_id) { 42.to_s }
 
   let(:project) do
-    Struct::Project.new(
-      name: 'chaos',
-      description: 'Viva Discordia'
-    )
+    Fabricate(:project)
   end
 
   let(:phase) do
