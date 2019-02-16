@@ -13,6 +13,12 @@ Minitest::Reporters.use! [
   Minitest::Reporters::ProgressReporter.new
 ]
 
+class MiniTest::Mock
+  def respond_to_missing?(symbol, include_private = false)
+    @expected_calls.key? symbol || super
+  end
+end
+
 class Minitest::Test
   # method for Imprint specs, which returnes AST
   def s(type, *children)
