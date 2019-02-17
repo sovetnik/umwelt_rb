@@ -12,17 +12,34 @@ describe Umwelt::Semantics::Plain::Space do
   let(:imprint_of_context) { described_class.new(node: context) }
 
   before do
-    node.expect(:kind_of?, true, [Umwelt::Nodes::Base])
     node.expect(:body, 'inner_space')
-    node.expect(:context, context)
+  end
 
-    context.expect(:kind_of?, true, [Umwelt::Nodes::Base])
-    context.expect(:imprint, imprint_of_context, [:Plain])
-    context.expect(:body, 'outer_space')
-    context.expect(:context, nil)
+  after do
+    node.verify
+    context.verify
+  end
+
+  describe '#to_path' do
+    before do
+      node.expect(:ancestry, [context, node])
+      context.expect(:body, 'outer_space')
+    end
+
+    it 'returnes relative path' do
+      _(subject.path).must_equal Pathname.new('outer_space/inner_space.rb')
+    end
   end
 
   describe '#to_ast' do
+    before do
+      node.expect(:context, context)
+
+      context.expect(:imprint, imprint_of_context, [:Plain])
+      context.expect(:body, 'outer_space')
+      context.expect(:context, nil)
+    end
+
     let(:ast) { subject.to_ast }
     it 'returnes ast node' do
       _(ast).must_equal s(

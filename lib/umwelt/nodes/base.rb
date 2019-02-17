@@ -12,6 +12,14 @@ module Umwelt::Nodes
       imprint_klass(name).new(node: self)
     end
 
+    def ancestry
+      if context_id
+        context.ancestry << self
+      else
+        [self]
+      end
+    end
+
     def context
       tree.node(context_id)
     end
@@ -25,7 +33,8 @@ module Umwelt::Nodes
     # Umwelt::Nodes::Space.new.imprint_klass(imprint)
     # => Umwelt::Semantics::Plain::Space
     def imprint_klass(imprint)
-      [imprint, label].reduce(Umwelt::Semantics) do |klass, name|
+      [imprint, label]
+        .reduce(Umwelt::Semantics) do |klass, name|
         klass.const_get name
       end
     end

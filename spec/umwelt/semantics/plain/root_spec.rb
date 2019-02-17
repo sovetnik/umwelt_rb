@@ -13,6 +13,12 @@ describe Umwelt::Semantics::Plain::Root do
 
   let(:root) { Fabricate.build(:root, body: 'project_root', kind: 'root') }
 
+  describe '#path' do
+    it 'returnes relative path' do
+      _(subject.path).must_equal Pathname.new('project_root.rb')
+    end
+  end
+
   describe '#to_ast' do
     let(:ast) { subject.to_ast }
     it 'returnes ast node' do

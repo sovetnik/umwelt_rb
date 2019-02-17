@@ -14,6 +14,16 @@ describe Umwelt::Semantics::Imprint do
   let(:uncle) { Fabricate.build(:uncle, kind: 'space') }
   let(:member) { Fabricate.build(:member, kind: 'space') }
 
+  describe '#ancestry' do
+    it 'returnes collection of ancestors' do
+      _(subject.ancestry).must_equal [
+        tree.node(root.id),
+        tree.node(parent.id),
+        tree.node(member.id)
+      ]
+    end
+  end
+
   describe '#context' do
     let(:element) { tree.node(member.id) }
     it 'returnes context of element' do
