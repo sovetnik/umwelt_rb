@@ -14,6 +14,16 @@ describe Umwelt::Nodes::Base do
   let(:uncle) { Fabricate.build(:uncle, kind: 'space') }
   let(:member) { Fabricate.build(:member, kind: 'space') }
 
+  describe '#ancestry' do
+    it 'returnes collection of ancestors' do
+      _(subject.ancestry).must_equal [
+        tree.node(root.id),
+        tree.node(parent.id),
+        tree.node(member.id)
+      ]
+    end
+  end
+
   describe '#context' do
     it 'returnes node of context' do
       _(subject.context).must_equal tree.node(parent.id)

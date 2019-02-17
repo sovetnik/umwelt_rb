@@ -8,9 +8,14 @@ module Umwelt
 end
 
 require 'umwelt/cli'
-require 'umwelt/files'
+require 'umwelt/mapper'
+require 'umwelt/file'
+
+require 'umwelt/episode'
+require 'umwelt/fragment'
 require 'umwelt/history'
-require 'umwelt/mappers'
+require 'umwelt/phase'
+require 'umwelt/project'
 require 'umwelt/nodes'
 require 'umwelt/semantics'
 require 'umwelt/tree'

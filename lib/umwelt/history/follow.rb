@@ -6,7 +6,7 @@ module Umwelt::History
 
     expose :episodes
 
-    def initialize(reader: Umwelt::Files::Episodes::Restore.new)
+    def initialize(reader: Umwelt::Episode::File::Restore.new)
       @reader = reader
     end
 
