@@ -4,4 +4,4 @@ module Umwelt::Tree
 end
 
 require_relative './tree/fill'
-require_relative './tree/tank'
+require_relative './tree/trunk'

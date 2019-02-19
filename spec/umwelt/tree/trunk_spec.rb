@@ -2,7 +2,7 @@
 
 require_relative '../../spec_helper'
 
-describe Umwelt::Tree::Tank do
+describe Umwelt::Tree::Trunk do
   subject do
     Umwelt::Tree::Fill.new.call [root, parent, uncle, member]
   end

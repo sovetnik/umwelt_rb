@@ -27,6 +27,7 @@ module Umwelt::Semantics
       Pathname.new(ancestry_path).sub_ext('.rb')
     end
 
+    # nil check for case of root node, which has not context
     def context
       node.context&.imprint(:Plain)
     end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Umwelt::Tree
-  class Tank
+  class Trunk
     def initialize(index: {},
                    childs_ids: {})
       @index = index

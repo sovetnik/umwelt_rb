@@ -12,7 +12,7 @@ module Umwelt::Tree
         add_to_index(fragment)
         register_as_child(fragment)
       end
-      fill_tank
+      fill_trunk
     end
 
     private
@@ -28,8 +28,8 @@ module Umwelt::Tree
       @childs_ids[fragment.context_id] << fragment.id
     end
 
-    def fill_tank
-      Tank.new(index: @index, childs_ids: @childs_ids)
+    def fill_trunk
+      Trunk.new(index: @index, childs_ids: @childs_ids)
     end
   end
 end
