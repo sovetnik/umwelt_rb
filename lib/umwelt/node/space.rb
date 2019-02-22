@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Umwelt::Nodes
-  class Root < Base
+module Umwelt::Node
+  class Space < Base
   end
 end

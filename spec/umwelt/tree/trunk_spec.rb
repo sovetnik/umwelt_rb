@@ -12,30 +12,25 @@ describe Umwelt::Tree::Trunk do
   let(:uncle) { Fabricate.build(:uncle, kind: 'space') }
   let(:member) { Fabricate.build(:member, kind: 'space') }
 
-  describe '#each_node' do
-    it 'returnes Enumerator' do
-      _(subject.each_node).must_be_instance_of Enumerator
-      _(subject.each_node).must_be_kind_of Enumerable
-    end
-
-    it 'with nodes' do
-      _(subject.each_node.inspect).must_equal [
+  describe '#nodes' do
+    it 'returnes modes array' do
+      _(subject.nodes).must_equal [
         subject.node(root.id),
         subject.node(parent.id),
         subject.node(uncle.id),
         subject.node(member.id)
-      ].each.inspect
+      ]
     end
   end
 
   describe '#node(id)' do
     let(:node) { subject.node(member.id) }
     it 'returnes node' do
-      _(node).must_be_kind_of Umwelt::Nodes::Base
+      _(node).must_be_kind_of Umwelt::Node::Base
     end
 
     it 'is a node' do
-      _(node).must_be_instance_of Umwelt::Nodes::Space
+      _(node).must_be_instance_of Umwelt::Node::Space
     end
   end
 

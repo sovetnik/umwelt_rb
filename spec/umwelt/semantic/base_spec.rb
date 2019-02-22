@@ -2,8 +2,8 @@
 
 require_relative '../../spec_helper'
 
-describe Umwelt::Nodes::Base do
-  subject { tree.node(member.id) }
+describe Umwelt::Semantic::Base do
+  subject { tree.node(member.id).semantic(:Plain) }
 
   let(:tree) do
     Umwelt::Tree::Fill.new.call [root, parent, uncle, member]
@@ -25,23 +25,20 @@ describe Umwelt::Nodes::Base do
   end
 
   describe '#context' do
-    it 'returnes node of context' do
-      _(subject.context).must_equal tree.node(parent.id)
+    let(:element) { tree.node(member.id) }
+    it 'returnes context of element' do
+      _(subject.context.body).must_equal parent.body
+      _(subject.context).must_be_instance_of Umwelt::Semantic::Plain::Space
     end
   end
 
-  describe 'imprint' do
-    let(:imprint) { subject.imprint(:Plain) }
+  describe 'node' do
     it 'returnes node' do
       _(subject).must_be_kind_of described_class
     end
 
-    it 'which builds imprint' do
-      _(imprint).must_be_kind_of Umwelt::Semantics::Imprint
-    end
-
-    it 'which actually a imprint subclass' do
-      _(imprint).must_be_instance_of Umwelt::Semantics::Plain::Space
+    it 'returnes node' do
+      _(subject).must_be_instance_of Umwelt::Semantic::Plain::Space
     end
   end
 end

@@ -2,14 +2,14 @@
 
 require_relative '../../../spec_helper'
 
-describe Umwelt::Semantics::Plain::Space do
+describe Umwelt::Semantic::Plain::Space do
   subject do
     described_class.new(node: node)
   end
 
   let(:node) { MiniTest::Mock.new }
   let(:context) { MiniTest::Mock.new }
-  let(:imprint_of_context) { described_class.new(node: context) }
+  let(:semantic_of_context) { described_class.new(node: context) }
 
   before do
     node.expect(:body, 'inner_space')
@@ -20,29 +20,29 @@ describe Umwelt::Semantics::Plain::Space do
     context.verify
   end
 
-  describe '#to_path' do
+  describe '#path' do
     before do
       node.expect(:ancestry, [context, node])
       context.expect(:body, 'outer_space')
     end
 
     it 'returnes relative path' do
-      _(subject.path).must_equal Pathname.new('outer_space/inner_space.rb')
+      _(subject.path)
+        .must_equal Pathname.pwd / 'umwelt/lib/outer_space/inner_space.rb'
     end
   end
 
-  describe '#to_ast' do
+  describe '#ast' do
     before do
       node.expect(:context, context)
 
-      context.expect(:imprint, imprint_of_context, [:Plain])
+      context.expect(:semantic, semantic_of_context, [:Plain])
       context.expect(:body, 'outer_space')
       context.expect(:context, nil)
     end
 
-    let(:ast) { subject.to_ast }
     it 'returnes ast node' do
-      _(ast).must_equal s(
+      _(subject.ast).must_equal s(
         :module,
         s(
           :const,
@@ -57,7 +57,7 @@ describe Umwelt::Semantics::Plain::Space do
     end
 
     it 'can be unparsed to' do
-      _(Unparser.unparse(ast))
+      _(Unparser.unparse(subject.ast))
         .must_equal "module OuterSpace::InnerSpace\nend"
     end
   end

@@ -8,11 +8,10 @@ module Umwelt::Tree
       @childs_ids = childs_ids
     end
 
-    def each_node(&block)
+    def nodes
       @index
         .values
         .map { |fragment| builder.call(fragment) }
-        .each(&block)
     end
 
     def node(id)
@@ -26,7 +25,7 @@ module Umwelt::Tree
     private
 
     def builder
-      @builder ||= Umwelt::Nodes::Build.new(self)
+      @builder ||= Umwelt::Node::Build.new(self)
     end
   end
 end

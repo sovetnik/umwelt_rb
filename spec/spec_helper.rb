@@ -20,7 +20,7 @@ class MiniTest::Mock
 end
 
 class Minitest::Test
-  # method for Imprint specs, which returnes AST
+  # method for semantic specs, which returnes AST
   def s(type, *children)
     Parser::AST::Node.new(type, children)
   end

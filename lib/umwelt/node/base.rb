@@ -2,14 +2,14 @@
 
 require_relative '../structs/node'
 
-module Umwelt::Nodes
+module Umwelt::Node
   class Base < Struct::Node
-    def imprints
+    def semantics
       [:Plain]
     end
 
-    def imprint(name)
-      imprint_klass(name).new(node: self)
+    def semantic(semantic_name)
+      semantic_klass(semantic_name).new(node: self)
     end
 
     def ancestry
@@ -30,11 +30,11 @@ module Umwelt::Nodes
 
     private
 
-    # Umwelt::Nodes::Space.new.imprint_klass(imprint)
-    # => Umwelt::Semantics::Plain::Space
-    def imprint_klass(imprint)
-      [imprint, label]
-        .reduce(Umwelt::Semantics) do |klass, name|
+    # Umwelt::Node::Space.new.semantic_klass(semantic)
+    # => Umwelt::Semantic::Plain::Space
+    def semantic_klass(semantic_name)
+      [semantic_name, label]
+        .reduce(Umwelt::Semantic) do |klass, name|
         klass.const_get name
       end
     end

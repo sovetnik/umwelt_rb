@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Umwelt::Nodes
+module Umwelt::Node
   class Build
     extend Forwardable
     def_delegators Hanami::Utils::String, :classify
@@ -25,7 +25,7 @@ module Umwelt::Nodes
     end
 
     def node_klass(kind)
-      Umwelt::Nodes.const_get classify(kind)
+      Umwelt::Node.const_get classify(kind)
     end
   end
 end

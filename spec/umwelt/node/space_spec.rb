@@ -2,7 +2,7 @@
 
 require_relative '../../spec_helper'
 
-describe Umwelt::Nodes::Space do
+describe Umwelt::Node::Space do
   subject { tree.node(member.id) }
 
   let(:tree) do
@@ -14,18 +14,18 @@ describe Umwelt::Nodes::Space do
   let(:uncle) { Fabricate.build(:uncle, kind: 'space') }
   let(:member) { Fabricate.build(:member, kind: 'space') }
 
-  describe 'imprint' do
-    let(:imprint) { subject.imprint(:Plain) }
+  describe 'semantic' do
+    let(:semantic) { subject.semantic(:Plain) }
     it 'is a node' do
       _(subject).must_be_instance_of described_class
     end
 
-    it 'which builds imprint' do
-      _(imprint).must_be_kind_of Umwelt::Semantics::Imprint
+    it 'which builds semantic' do
+      _(semantic).must_be_kind_of Umwelt::Semantic::Base
     end
 
-    it 'which actually a imprint subclass' do
-      _(imprint).must_be_instance_of Umwelt::Semantics::Plain::Space
+    it 'which actually a semantic subclass' do
+      _(semantic).must_be_instance_of Umwelt::Semantic::Plain::Space
     end
   end
 end
