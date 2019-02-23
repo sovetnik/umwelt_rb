@@ -36,12 +36,6 @@ module Umwelt::History
       fantom_ids.empty? || error!("Aggregate failed: fantom ids: #{fantom_ids}")
     end
 
-    def episode(phase)
-      restored = restore_episode(phase.id)
-      error! restored.errors if restored.failure?
-      restored.struct
-    end
-
     def collect_forgotten(ids)
       @forgotten.push(*ids)
     end
