@@ -12,7 +12,11 @@ module Umwelt::Project::File
     end
 
     def call
-      @struct = struct parse read umwelt_root_path
+      @struct = struct parse read full_path
+    end
+
+    def full_path
+      umwelt_root_path / 'project.json'
     end
   end
 end

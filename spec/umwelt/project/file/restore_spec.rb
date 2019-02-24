@@ -10,8 +10,8 @@ describe Umwelt::Project::File::Restore do
     Umwelt::Project::File::Restore.new(path: tmp)
   end
 
-  let(:tmp) { 'tmp/.umwelt' }
-  let(:path) { Pathname.pwd / tmp }
+  let(:tmp) { 'tmp' }
+  let(:path) { Pathname.pwd / tmp / 'project.json' }
 
   let(:project) { Fabricate(:project) }
 
@@ -43,7 +43,7 @@ describe Umwelt::Project::File::Restore do
 
     it 'fails with errors' do
       _(failed.errors).must_equal [
-        "Failed reading #{Pathname.pwd}/tmp/.umwelt"
+        "Failed reading #{Pathname.pwd}/tmp/project.json"
       ]
     end
   end

@@ -10,8 +10,8 @@ describe Umwelt::Project::File::Store do
     Umwelt::Project::File::Store.new(path: tmp)
   end
 
-  let(:tmp) { 'tmp/.umwelt' }
-  let(:path) { Pathname.pwd / tmp }
+  let(:tmp) { 'tmp' }
+  let(:path) { Pathname.pwd / tmp / 'project.json' }
 
   let(:project) { Fabricate(:project) }
 

@@ -4,16 +4,14 @@ require_relative '../../../spec_helper'
 
 describe Umwelt::History::File::Store do
   subject do
-    interactor.call(project_id, history)
+    interactor.call(history)
   end
   let(:interactor) do
     Umwelt::History::File::Store.new(path: tmp)
   end
 
-  let(:tmp) { 'tmp/histories' }
-  let(:path) { Pathname.pwd / tmp / "#{project_id}.json" }
-
-  let(:project_id) { 42.to_s }
+  let(:tmp) { 'tmp' }
+  let(:path) { Pathname.pwd / tmp / 'history.json' }
 
   let(:project) { Fabricate(:project) }
 

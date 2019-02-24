@@ -10,8 +10,8 @@ describe Umwelt::Episode::File::Restore do
     Umwelt::Episode::File::Restore.new(path: tmp)
   end
 
-  let(:tmp) { 'tmp/episodes' }
-  let(:path) { Pathname.pwd / tmp / "#{phase_id}.json" }
+  let(:tmp) { 'tmp' }
+  let(:path) { Pathname.pwd / tmp / "episodes/#{phase_id}.json" }
 
   let(:phase_id) { 13 }
 

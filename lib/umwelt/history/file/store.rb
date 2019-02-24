@@ -2,8 +2,14 @@
 
 module Umwelt::History::File
   class Store < Umwelt::File::Store
-    def initialize(path: '.umwelt/histories')
-      super
+    def call(struct)
+      mkpath full_path.dirname
+
+      full_path.write serialize destruct struct
+    end
+
+    def full_path
+      umwelt_root_path / 'history.json'
     end
   end
 end

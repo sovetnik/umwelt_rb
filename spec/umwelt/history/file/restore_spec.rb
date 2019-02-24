@@ -4,16 +4,14 @@ require_relative '../../../spec_helper'
 
 describe Umwelt::History::File::Restore do
   subject do
-    interactor.call(project_id)
+    interactor.call
   end
   let(:interactor) do
     Umwelt::History::File::Restore.new(path: tmp)
   end
 
-  let(:tmp) { 'tmp/histories' }
-  let(:path) { Pathname.pwd / tmp / "#{project_id}.json" }
-
-  let(:project_id) { 42.to_s }
+  let(:tmp) { 'tmp' }
+  let(:path) { Pathname.pwd / tmp / 'history.json' }
 
   let(:project) do
     Fabricate(:project)
@@ -38,17 +36,13 @@ describe Umwelt::History::File::Restore do
     )
   end
 
-  before do
-    Umwelt::History::File::Store
-      .new(path: tmp)
-      .call(project_id, history)
-  end
-
-  after do
-    path.delete
-  end
-
   describe 'success' do
+    before do
+      Umwelt::History::File::Store
+        .new(path: tmp)
+        .call(history)
+    end
+
     it 'should be success' do
       _(subject.success?).must_equal true
     end
@@ -57,18 +51,20 @@ describe Umwelt::History::File::Restore do
       _(subject.struct).must_be_kind_of Struct::History
       _(subject.struct).must_equal history
     end
+
+    after do
+      path.delete
+    end
   end
 
   describe 'when file is not exist' do
-    let(:failed) { interactor.call(23) }
-
     it 'should be failed' do
-      _(failed.failure?).must_equal true
+      _(subject.failure?).must_equal true
     end
 
     it 'fails with errors' do
-      _(failed.errors).must_equal [
-        "Failed reading #{Pathname.pwd}/tmp/histories/23.json"
+      _(subject.errors).must_equal [
+        "Failed reading #{Pathname.pwd}/tmp/history.json"
       ]
     end
   end

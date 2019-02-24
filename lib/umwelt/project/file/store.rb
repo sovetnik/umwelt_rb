@@ -2,12 +2,14 @@
 
 module Umwelt::Project::File
   class Store < Umwelt::File::Store
-    def initialize(path: '.umwelt')
-      super
+    def call(struct)
+      mkpath full_path.dirname
+
+      full_path.write serialize destruct struct
     end
 
-    def call(struct)
-      umwelt_root_path.write serialize destruct struct
+    def full_path
+      umwelt_root_path / 'project.json'
     end
   end
 end

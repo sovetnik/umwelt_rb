@@ -2,8 +2,14 @@
 
 module Umwelt::Episode::File
   class Store < Umwelt::File::Store
-    def initialize(path: '.umwelt/episodes')
-      super
+    def call(id, struct)
+      mkpath full_path(id).dirname
+
+      full_path(id).write serialize(destruct(struct))
+    end
+
+    def full_path(id)
+      umwelt_root_path / "episodes/#{id}.json"
     end
   end
 end
