@@ -11,6 +11,7 @@ describe Umwelt::Project::File::Restore do
   end
 
   let(:tmp) { 'tmp' }
+  let(:tmp_root) { Pathname.pwd / tmp }
   let(:path) { Pathname.pwd / tmp / 'project.json' }
 
   let(:project) { Fabricate(:project) }
@@ -21,7 +22,7 @@ describe Umwelt::Project::File::Restore do
     end
 
     after do
-      path.delete
+      tmp_root.rmtree
     end
 
     it 'should be success' do

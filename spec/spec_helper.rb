@@ -20,6 +20,8 @@ class MiniTest::Mock
 end
 
 class Minitest::Test
+  make_my_diffs_pretty!
+
   # method for semantic specs, which returnes AST
   def s(type, *children)
     Parser::AST::Node.new(type, children)

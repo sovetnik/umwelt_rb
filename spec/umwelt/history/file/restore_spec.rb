@@ -6,11 +6,13 @@ describe Umwelt::History::File::Restore do
   subject do
     interactor.call
   end
+
   let(:interactor) do
     Umwelt::History::File::Restore.new(path: tmp)
   end
 
   let(:tmp) { 'tmp' }
+  let(:tmp_root) { Pathname.pwd / tmp }
   let(:path) { Pathname.pwd / tmp / 'history.json' }
 
   let(:project) do
@@ -18,15 +20,7 @@ describe Umwelt::History::File::Restore do
   end
 
   let(:phase) do
-    Struct::Phase.new(
-      id: 13,
-      parent_id: 5,
-      merge_id: nil,
-      user_id: 1,
-      finished_at: Time.now.to_s,
-      name: 'feature',
-      description: 'implementing feature'
-    )
+    Fabricate(:phase, finished_at: Time.now.to_s)
   end
 
   let(:history) do

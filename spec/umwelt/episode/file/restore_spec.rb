@@ -11,6 +11,7 @@ describe Umwelt::Episode::File::Restore do
   end
 
   let(:tmp) { 'tmp' }
+  let(:tmp_root) { Pathname.pwd / tmp }
   let(:path) { Pathname.pwd / tmp / "episodes/#{phase_id}.json" }
 
   let(:phase_id) { 13 }
@@ -53,7 +54,7 @@ describe Umwelt::Episode::File::Restore do
   end
 
   after do
-    path.delete
+    tmp_root.rmtree
   end
 
   describe 'success' do

@@ -8,9 +8,10 @@ describe Umwelt::History::Follow do
   end
 
   let(:interactor) do
-    Umwelt::History::Follow.new(reader: reader)
+    Umwelt::History::Follow.new(reader: reader_class)
   end
 
+  let(:reader_class) { Minitest::Mock.new }
   let(:reader) { Minitest::Mock.new }
 
   let(:phase_chaos) { Fabricate(:chaos) }
@@ -23,6 +24,7 @@ describe Umwelt::History::Follow do
   let(:result_discord) { Minitest::Mock.new }
 
   before do
+    reader_class.expect :new, reader, [{ path: '.umwelt' }]
     reader.expect :call, result_chaos, [phase_chaos.id]
     result_chaos.expect :failure?, false
     result_chaos.expect :struct, episode_chaos
