@@ -1,0 +1,48 @@
+{
+  "phase": {
+    "id": 4,
+    "parent_id": 2,
+    "merge_id": null,
+    "user_id": 1,
+    "finished_at": "2018-12-19 22:54:23 UTC",
+    "name": "gamma",
+    "description": "Swarthy loathsome hideous unnamable."
+  },
+  "engaged": [
+    {
+      "id": 11,
+      "abstract_id": null,
+      "context_id": 2,
+      "kind": "space",
+      "body": "gamma_alive",
+      "note": "virtual application"
+    },
+    {
+      "id": 12,
+      "abstract_id": null,
+      "context_id": 5,
+      "kind": "space",
+      "body": "gamma_delta",
+      "note": "neural array"
+    },
+    {
+      "id": 13,
+      "abstract_id": null,
+      "context_id": 7,
+      "kind": "space",
+      "body": "gamma_zeta",
+      "note": "virtual bandwidth"
+    },
+    {
+      "id": 14,
+      "abstract_id": null,
+      "context_id": 8,
+      "kind": "space",
+      "body": "gamma_theta",
+      "note": "wireless port"
+    }
+  ],
+  "forgotten": [
+    4
+  ]
+}

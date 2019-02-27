@@ -1,0 +1,72 @@
+{
+  "phase": {
+    "id": 2,
+    "parent_id": 1,
+    "merge_id": null,
+    "user_id": 1,
+    "finished_at": "2018-12-19 22:54:23 UTC",
+    "name": "alfa",
+    "description": "Fungus amorphous madness noisome foetid."
+  },
+  "engaged": [
+    {
+      "id": 2,
+      "abstract_id": null,
+      "context_id": 1,
+      "kind": "space",
+      "body": "alfa_alive",
+      "note": "auxiliary array"
+    },
+    {
+      "id": 3,
+      "abstract_id": null,
+      "context_id": 1,
+      "kind": "space",
+      "body": "alfa_beta",
+      "note": "virtual driver"
+    },
+    {
+      "id": 4,
+      "abstract_id": null,
+      "context_id": 1,
+      "kind": "space",
+      "body": "alfa_gamma",
+      "note": "neural pixel"
+    },
+    {
+      "id": 5,
+      "abstract_id": null,
+      "context_id": 1,
+      "kind": "space",
+      "body": "alfa_delta",
+      "note": "online port"
+    },
+    {
+      "id": 6,
+      "abstract_id": null,
+      "context_id": 1,
+      "kind": "space",
+      "body": "alfa_epsilon",
+      "note": "mobile bus"
+    },
+    {
+      "id": 7,
+      "abstract_id": null,
+      "context_id": 1,
+      "kind": "space",
+      "body": "alfa_zeta",
+      "note": "haptic array"
+    },
+    {
+      "id": 8,
+      "abstract_id": null,
+      "context_id": 1,
+      "kind": "space",
+      "body": "alfa_theta",
+      "note": "digital firewall"
+    }
+  ],
+  "forgotten": [
+
+  ]
+}

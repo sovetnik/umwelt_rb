@@ -1,0 +1,32 @@
+{
+  "phase": {
+    "id": 3,
+    "parent_id": 2,
+    "merge_id": null,
+    "user_id": 1,
+    "finished_at": "2018-12-19 22:54:23 UTC",
+    "name": "beta",
+    "description": "Foetid lurk abnormal swarthy immemorial madness daemoniac."
+  },
+  "engaged": [
+    {
+      "id": 9,
+      "abstract_id": null,
+      "context_id": 2,
+      "kind": "space",
+      "body": "beta_alive",
+      "note": "bluetooth matrix"
+    },
+    {
+      "id": 10,
+      "abstract_id": null,
+      "context_id": 6,
+      "kind": "space",
+      "body": "beta_epsilo",
+      "note": "primary system"
+    }
+  ],
+  "forgotten": [
+    3
+  ]
+}

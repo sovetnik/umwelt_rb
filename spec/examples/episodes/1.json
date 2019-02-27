@@ -1,0 +1,24 @@
+{
+  "phase": {
+    "id": 1,
+    "parent_id": null,
+    "merge_id": null,
+    "user_id": 1,
+    "finished_at": "2018-12-19 22:54:23 UTC",
+    "name": "initial_phase",
+    "description": "Effulgence immemorial unnamable hideous."
+  },
+  "engaged": [
+    {
+      "id": 1,
+      "abstract_id": null,
+      "context_id": null,
+      "kind": "root",
+      "body": "example",
+      "note": "primary bus"
+    }
+  ],
+  "forgotten": [
+
+  ]
+}

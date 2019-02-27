@@ -1,0 +1,64 @@
+{
+  "project": {
+    "user_name": "sovetnik",
+    "project_name": "example",
+    "project_id": "1",
+    "description": "Durable Rubber Watch"
+  },
+  "phases": [
+    {
+      "id": 1,
+      "parent_id": null,
+      "merge_id": null,
+      "user_id": 1,
+      "finished_at": "2018-12-19 22:54:23 UTC",
+      "name": "initial_phase",
+      "description": "Effulgence immemorial unnamable hideous."
+    },
+    {
+      "id": 2,
+      "parent_id": 1,
+      "merge_id": null,
+      "user_id": 1,
+      "finished_at": "2018-12-19 22:54:23 UTC",
+      "name": "alfa",
+      "description": "Fungus amorphous madness noisome foetid."
+    },
+    {
+      "id": 3,
+      "parent_id": 2,
+      "merge_id": null,
+      "user_id": 1,
+      "finished_at": "2018-12-19 22:54:23 UTC",
+      "name": "beta",
+      "description": "Foetid lurk abnormal swarthy immemorial madness daemoniac."
+    },
+    {
+      "id": 4,
+      "parent_id": 2,
+      "merge_id": null,
+      "user_id": 1,
+      "finished_at": "2018-12-19 22:54:23 UTC",
+      "name": "gamma",
+      "description": "Swarthy loathsome hideous unnamable."
+    },
+    {
+      "id": 5,
+      "parent_id": 2,
+      "merge_id": 4,
+      "user_id": 1,
+      "finished_at": "2018-12-19 22:54:23 UTC",
+      "name": "delta",
+      "description": "Fungus iridescence cat ululate."
+    },
+    {
+      "id": 7,
+      "parent_id": 5,
+      "merge_id": null,
+      "user_id": 1,
+      "finished_at": "2018-12-19 22:54:23 UTC",
+      "name": "zeta",
+      "description": "Dank foetid gambrel antediluvian indescribable."
+    }
+  ]
+}
