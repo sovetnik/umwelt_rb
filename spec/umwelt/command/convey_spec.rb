@@ -38,18 +38,18 @@ describe Umwelt::Command::Convey do
       pp temp_root.entries if temp_root.exist?
     end
 
-    it 'writes code from tree to files' do
-      _(subject.result).must_equal [
-        { temp_root / 'example/alfa_alive/gamma_alive/zeta_one.rb' => 50 },
-        { temp_root / 'example/alfa_alive/gamma_alive/delta_alive.rb' => 53 },
-        { temp_root / 'example/alfa_theta/gamma_theta/delta_theta.rb' => 53 },
-        { temp_root / 'example/alfa_alive/gamma_alive.rb' => 41 },
-        { temp_root / 'example/alfa_theta/gamma_theta.rb' => 41 },
-        { temp_root / 'example/alfa_alive.rb' => 29 },
-        { temp_root / 'example/alfa_beta.rb' => 28 },
-        { temp_root / 'example/alfa_epsilon.rb' => 31 },
-        { temp_root / 'example/alfa_theta.rb' => 29 },
-        { temp_root / 'example.rb' => 18 }
+    it 'exposes written_paths' do
+      _(subject.result).must_equal Hash[
+         temp_root / 'example/alfa_alive/gamma_alive/zeta_one.rb' => 50,
+         temp_root / 'example/alfa_alive/gamma_alive/delta_alive.rb' => 53,
+         temp_root / 'example/alfa_theta/gamma_theta/delta_theta.rb' => 53,
+         temp_root / 'example/alfa_alive/gamma_alive.rb' => 41,
+         temp_root / 'example/alfa_theta/gamma_theta.rb' => 41,
+         temp_root / 'example/alfa_alive.rb' => 29,
+         temp_root / 'example/alfa_beta.rb' => 28,
+         temp_root / 'example/alfa_epsilon.rb' => 31,
+         temp_root / 'example/alfa_theta.rb' => 29,
+         temp_root / 'example.rb' => 18
       ]
     end
   end

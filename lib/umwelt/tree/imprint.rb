@@ -11,7 +11,7 @@ module Umwelt::Tree
     def initialize(trunk, location: nil)
       @trunk = trunk
       @location = location
-      @written_paths = []
+      @written_paths = {}
     end
 
     def call(semantic_name)
@@ -31,7 +31,7 @@ module Umwelt::Tree
 
       count = path.write(semantic.code)
 
-      @written_paths << Hash[path, count]
+      @written_paths[path] = count
     end
 
     def location_clean?

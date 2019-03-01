@@ -46,10 +46,7 @@ describe Umwelt::Tree::Imprint do
       _(parent_path.read).must_equal parent_code
       _(member_path.read).must_equal member_code
 
-      _(subject.written_paths).must_equal [
-        { parent_path => 17 },
-        { member_path => 25 }
-      ]
+      _(subject.written_paths).must_equal(parent_path => 17, member_path => 25)
     end
   end
 
