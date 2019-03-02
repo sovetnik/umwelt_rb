@@ -4,7 +4,7 @@ require_relative '../structs/phase'
 require_relative '../structs/fragment'
 
 module Umwelt::Episode
-  class Mapper < Umwelt::Mapper
+  class Mapper < Umwelt::Abstract::Mapper
     def call(
       data = {
         phase: {},

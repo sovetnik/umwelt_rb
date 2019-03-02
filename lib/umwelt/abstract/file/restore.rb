@@ -3,7 +3,7 @@
 require 'hanami/interactor'
 require 'json'
 
-module Umwelt::File
+module Umwelt::Abstract::File
   class Restore
     include Hanami::Interactor
 

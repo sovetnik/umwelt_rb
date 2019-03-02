@@ -3,11 +3,9 @@
 require 'hanami/interactor'
 # require_relative './structs/phase'
 # require_relative './structs/fragment'
-require_relative './utils'
 
-class Umwelt::Mapper
+class Umwelt::Abstract::Mapper
   include Hanami::Interactor
-  include Umwelt::Utils
 
   expose :struct
 

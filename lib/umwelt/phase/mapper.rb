@@ -3,7 +3,7 @@
 require_relative '../structs/phase'
 
 module Umwelt::Phase
-  class Mapper < Umwelt::Mapper
+  class Mapper < Umwelt::Abstract::Mapper
     def call(data)
       @struct = fill(
         Struct::Phase,

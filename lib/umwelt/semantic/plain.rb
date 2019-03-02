@@ -7,3 +7,6 @@ module Umwelt::Semantic::Plain
     end
   end
 end
+
+require_relative './plain/root'
+require_relative './plain/space'

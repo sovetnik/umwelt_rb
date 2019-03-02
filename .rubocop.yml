@@ -6,6 +6,14 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
+Metrics/AbcSize:
+  Exclude:
+    - 'lib/umwelt/cli/commands/*'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'lib/umwelt/cli/commands/*'
+
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/**/*_spec.rb'

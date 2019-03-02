@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Umwelt::Episode::File
-  class Store < Umwelt::File::Store
+  class Store < Umwelt::Abstract::File::Store
     def call(id, struct)
       mkpath full_path(id).dirname
 

@@ -7,8 +7,7 @@ require 'unparser'
 module Umwelt
 end
 
-require 'umwelt/mapper'
-require 'umwelt/file'
+require 'umwelt/abstract'
 
 require 'umwelt/episode'
 require 'umwelt/fragment'

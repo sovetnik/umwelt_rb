@@ -3,7 +3,7 @@
 require_relative '../../structs/episode'
 
 module Umwelt::Episode::File
-  class Restore < Umwelt::File::Restore
+  class Restore < Umwelt::Abstract::File::Restore
     def initialize(
       path: '.umwelt',
       mapper: Umwelt::Episode::Mapper

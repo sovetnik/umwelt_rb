@@ -5,7 +5,7 @@ require 'json'
 require 'fileutils'
 require 'pathname'
 
-module Umwelt::File
+module Umwelt::Abstract::File
   class Store
     extend Forwardable
     include Hanami::Interactor

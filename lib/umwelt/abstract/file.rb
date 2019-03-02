@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Umwelt::File
+module Umwelt::Abstract::File
 end
 
 require_relative './file/store'

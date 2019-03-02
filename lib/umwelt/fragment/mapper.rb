@@ -3,7 +3,7 @@
 require_relative '../structs/fragment'
 
 module Umwelt::Fragment
-  class Mapper < Umwelt::Mapper
+  class Mapper < Umwelt::Abstract::Mapper
     def call(data)
       @struct = fill(Struct::Fragment, data)
     end

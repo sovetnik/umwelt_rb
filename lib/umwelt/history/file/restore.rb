@@ -3,7 +3,7 @@
 require_relative '../../structs/history'
 
 module Umwelt::History::File
-  class Restore < Umwelt::File::Restore
+  class Restore < Umwelt::Abstract::File::Restore
     def initialize(
       path: '.umwelt',
       mapper: Umwelt::History::Mapper
