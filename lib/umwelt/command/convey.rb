@@ -7,12 +7,7 @@ module Umwelt::Command
 
     expose :result
 
-    def call(phase_id:,
-             semantic:,
-             source:,
-             target:)
-      pp "Buildung phase: #{phase_id} with semantic #{semantic}..."
-
+    def call(phase_id:, semantic:, source:, target:)
       @result = imprint(
         tree(source, phase_id), target, semantic
       )
