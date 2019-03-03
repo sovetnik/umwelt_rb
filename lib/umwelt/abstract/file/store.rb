@@ -7,9 +7,7 @@ require 'pathname'
 
 module Umwelt::Abstract::File
   class Store
-    extend Forwardable
     include Hanami::Interactor
-    def_delegators FileUtils, :mkpath
 
     def initialize(path: '.umwelt')
       @path = path

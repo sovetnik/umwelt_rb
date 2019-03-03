@@ -52,7 +52,7 @@ describe Umwelt::Tree::Imprint do
 
   describe 'when we has a file in location' do
     before do
-      FileUtils.mkpath member_path.dirname
+      member_path.dirname.mkpath
       member_path.write member_code
     end
 

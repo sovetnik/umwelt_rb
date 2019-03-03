@@ -3,7 +3,7 @@
 module Umwelt::History::File
   class Store < Umwelt::Abstract::File::Store
     def call(struct)
-      mkpath full_path.dirname
+      full_path.dirname.mkpath
 
       full_path.write serialize destruct struct
     end

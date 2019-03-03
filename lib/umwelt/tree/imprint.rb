@@ -3,8 +3,6 @@
 module Umwelt::Tree
   class Imprint
     include Hanami::Interactor
-    extend Forwardable
-    def_delegators FileUtils, :mkpath
 
     expose :written_paths
 
@@ -27,7 +25,7 @@ module Umwelt::Tree
     def write(semantic)
       path = semantic.path(location: @location)
 
-      mkpath path.dirname
+      path.dirname.mkpath
 
       count = path.write(semantic.code)
 
@@ -35,7 +33,7 @@ module Umwelt::Tree
     end
 
     def location_clean?
-      mkpath imprint_root
+      imprint_root.mkpath
       imprint_root.empty?
     end
 
