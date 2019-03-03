@@ -77,7 +77,7 @@ module Umwelt::Command
       if restored.success?
         restored.struct
       else
-        error! "Cannot restore history of #{phase_id}: #{restored.errors}"
+        error! "Cannot restore history from '#{source}': #{restored.errors}"
       end
     end
   end

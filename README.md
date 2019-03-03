@@ -1,9 +1,9 @@
 # Umwelt
 
-Umwelt is a way to express domain knowledge in figurable format.
+Umwelt is a way to express domain knowledge in a figurable format.
 It includes a language( collection of abstractions ),
 [umwelt.dev](http://umwelt.dev) for collaborative domain development,
-and this gem, as tool for generate code structure and specs from umwelt.
+and this gem, as a tool for generate code structure and specs from umwelt.
 
 The word `Umwelt` was borrowed from [Biosemiotics](https://en.wikipedia.org/wiki/Biosemiotics). In the semiotic theories of Jakob von Uexküll and Thomas A. Sebeok, umwelt (plural: umwelten; from the German Umwelt meaning "environment" or "surroundings") is the "biological foundations that lie at the very epicenter of the study of both communication and signification in the human [and non-human] animal".[1] The term is usually translated as "self-centered world".
 So, in our case umwelt is the world how it sees for our apps.
@@ -34,21 +34,26 @@ Main executable is `umwelt`
 ```shell
  umwelt help
 Commands:
-  umwelt clone PROJECT # Clone project from remote Umwelt(umwelt.dev)
-  umwelt convey PHASE SEMANTIC # Convey Phase in Semantic from local Umwelt
-  umwelt pull # Pull project from remote Umwelt
+  umwelt clone PROJECT                        # Clone project from remote Umwelt
+  umwelt convey PHASE SEMANTIC                # Convey Phase in Semantic from local Umwelt
+  umwelt example                              # Create example Umwelt
+  umwelt pull                                 # Pull project from remote Umwelt
   umwelt version
   ```
 
-In first release only one command is implemented: convey.
-This is main feature of gem, generate imprints os code and write it to files. Examples of source files in human-readable json in `spec/examples` so we can test this feature by calling convey with parameters.
+In first release only two command is implemented: example and convey.
+To begin, call `example`, it will copy source files in `./.umwelt`
+```shell
+umwelt example
+```
+This is main feature of gem, generate imprints of code and write it to files. Let's do this and see result.
 
 ```shell
-bin/umwelt convey 7 plain --source=spec/examples --target=target
-cd target
+umwelt convey 7 plain
+ls -R umwelt 
 ```
 
-After that you can see generated files in target directory.
+After that you can see generated files.
 
 ```shell
 Buildung phase: 7 with semantic plain...

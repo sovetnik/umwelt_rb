@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    umwelt (0.1.0)
+    umwelt (0.1.1)
       hanami-cli
       unparser
 
