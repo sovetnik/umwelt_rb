@@ -5,3 +5,4 @@ end
 
 require_relative './project/file'
 require_relative './project/mapper'
+require_relative './project/get'
