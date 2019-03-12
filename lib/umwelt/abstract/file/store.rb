@@ -9,11 +9,20 @@ module Umwelt::Abstract::File
   class Store
     include Hanami::Interactor
 
+    expose :written_paths
+
     def initialize(path: '.umwelt')
       @path = path
+      @written_paths = {}
     end
 
     private
+
+    def write(path, struct)
+      path.dirname.mkpath
+
+      path.write serialize destruct struct
+    end
 
     def serialize(struct)
       JSON.pretty_generate struct

@@ -2,7 +2,6 @@
 
 module Umwelt::History
   class Get < Umwelt::Abstract::Request
-
     expose :history
 
     def call(project_id)

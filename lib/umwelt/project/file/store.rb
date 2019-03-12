@@ -3,9 +3,9 @@
 module Umwelt::Project::File
   class Store < Umwelt::Abstract::File::Store
     def call(struct)
-      full_path.dirname.mkpath
+      count = write(full_path, struct)
 
-      full_path.write serialize destruct struct
+      @written_paths[full_path] = count
     end
 
     def full_path
