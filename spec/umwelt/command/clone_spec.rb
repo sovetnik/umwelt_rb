@@ -12,17 +12,20 @@ describe Umwelt::Command::Clone do
 
   let(:umwelt_root) { Pathname.pwd / 'tmp' }
   let(:examples) { Pathname.pwd / 'spec/examples' }
+  let(:headers) do
+    {
+      'Accept' => 'application/json',
+      'Content-Type' => 'application/json',
+      'User-Agent' => "Umwelt client #{Umwelt::VERSION}"
+    }
+  end
 
   before do
     stub_request(
       :get,
       'http://umwelt.dev/api/projects/find?project_name=ford&user_name=genry'
     ).with(
-      headers: {
-        'Accept' => 'application/json',
-        'Content-Type' => 'application/json',
-        'User-Agent' => 'Umwelt client 0.1.1'
-      }
+      headers: headers
     ).to_return(
       status: 200,
       body: (examples / 'project.json').read,
@@ -31,11 +34,7 @@ describe Umwelt::Command::Clone do
 
     stub_request(:get, 'http://umwelt.dev/api/histories/1')
       .with(
-        headers: {
-          'Accept' => 'application/json',
-          'Content-Type' => 'application/json',
-          'User-Agent' => 'Umwelt client 0.1.1'
-        }
+        headers: headers
       ).to_return(
         status: 200,
         body: (examples / 'short_history.json').read,
@@ -44,11 +43,7 @@ describe Umwelt::Command::Clone do
 
     stub_request(:get, 'http://umwelt.dev/api/episodes/1')
       .with(
-        headers: {
-          'Accept' => 'application/json',
-          'Content-Type' => 'application/json',
-          'User-Agent' => 'Umwelt client 0.1.1'
-        }
+        headers: headers
       ).to_return(
         status: 200,
         body: (examples / 'episodes/1.json').read,
@@ -57,11 +52,7 @@ describe Umwelt::Command::Clone do
 
     stub_request(:get, 'http://umwelt.dev/api/episodes/2')
       .with(
-        headers: {
-          'Accept' => 'application/json',
-          'Content-Type' => 'application/json',
-          'User-Agent' => 'Umwelt client 0.1.1'
-        }
+        headers: headers
       ).to_return(
         status: 200,
         body: (examples / 'episodes/2.json'),

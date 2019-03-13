@@ -5,9 +5,7 @@ require 'webmock/minitest'
 
 describe Umwelt::Project::Get do
   subject do
-    interactor.call(
-      project_name: 'genry', user_name: 'ford'
-    )
+    interactor.call(project_name: 'genry', user_name: 'ford')
   end
 
   let(:interactor) do
@@ -16,6 +14,14 @@ describe Umwelt::Project::Get do
 
   let(:project) { Fabricate(:project) }
 
+  let(:headers) do
+    {
+      'Accept' => 'application/json',
+      'Content-Type' => 'application/json',
+      'User-Agent' => "Umwelt client #{Umwelt::VERSION}"
+    }
+  end
+
   describe 'when all is good' do
     before do
       # stub_request(:get, 'http://localhost:2300/api/histories/23')
@@ -23,11 +29,7 @@ describe Umwelt::Project::Get do
         :get,
         'http://umwelt.dev/api/projects/find?project_name=genry&user_name=ford'
       ).with(
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'User-Agent' => 'Umwelt client 0.1.1'
-        }
+        headers: headers
       ).to_return(
         status: 200,
         body: JSON.generate(project.to_h),
@@ -55,11 +57,7 @@ describe Umwelt::Project::Get do
         :get,
         'http://umwelt.dev/api/projects/find?project_name=genry&user_name=ford'
       ).with(
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'User-Agent' => 'Umwelt client 0.1.1'
-        }
+        headers: headers
       ).to_return(
         status: 200,
         body: JSON.generate(shit: :happens),
@@ -86,11 +84,7 @@ describe Umwelt::Project::Get do
         :get,
         'http://umwelt.dev/api/projects/find?project_name=genry&user_name=ford'
       ).with(
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'User-Agent' => 'Umwelt client 0.1.1'
-        }
+        headers: headers
       ).to_return(
         status: 404,
         body: JSON.generate(Hash[errors: ['No project found']]),

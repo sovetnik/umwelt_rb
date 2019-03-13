@@ -39,17 +39,21 @@ describe Umwelt::History::Get do
     )
   end
 
+  let(:headers) do
+    {
+      'Accept' => 'application/json',
+      'Content-Type' => 'application/json',
+      'User-Agent' => "Umwelt client #{Umwelt::VERSION}"
+    }
+  end
+
   describe 'when all is good' do
     before do
       stub_request(
         :get,
         'http://umwelt.dev/api/histories/23'
       ).with(
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'User-Agent' => 'Umwelt client 0.1.1'
-        }
+        headers: headers
       ).to_return(
         status: 200,
         body: JSON.generate(history_data),
@@ -72,11 +76,7 @@ describe Umwelt::History::Get do
       stub_request(
         :get, 'http://umwelt.dev/api/histories/23'
       ).with(
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'User-Agent' => 'Umwelt client 0.1.1'
-        }
+        headers: headers
       ).to_return(
         status: 200,
         body: JSON.generate(shit: :happens),
@@ -103,11 +103,7 @@ describe Umwelt::History::Get do
         :get,
         'http://umwelt.dev/api/histories/23'
       ).with(
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'User-Agent' => 'Umwelt client 0.1.1'
-        }
+        headers: headers
       ).to_return(
         status: 404,
         body: JSON.generate(Hash[errors: ['No project found']]),
