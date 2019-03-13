@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module Umwelt::Tree
-  class Imprint
-    include Hanami::Interactor
-
+  class Imprint < Umwelt::Abstract::Interactor
     expose :written_paths
 
     def initialize(trunk, location: nil)

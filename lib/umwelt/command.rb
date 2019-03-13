@@ -1,12 +1,7 @@
 # frozen_string_literal: true
 
 module Umwelt::Command
-  class Base
-    include Hanami::Interactor
-
-    def prove(result)
-      result.success? ? result : error!(result.errors)
-    end
+  class Base < Umwelt::Abstract::Interactor
   end
 end
 

@@ -6,9 +6,7 @@ require 'fileutils'
 require 'pathname'
 
 module Umwelt::Abstract::File
-  class Store
-    include Hanami::Interactor
-
+  class Store < Umwelt::Abstract::Interactor
     expose :written_paths
 
     def initialize(path: '.umwelt')

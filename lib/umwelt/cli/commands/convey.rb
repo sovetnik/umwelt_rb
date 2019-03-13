@@ -37,15 +37,14 @@ module Umwelt::CLI::Commands
         return
       end
 
-      result =
-        report(
-          Umwelt::Command::Convey.new.call(
-            phase_id: phase.to_i,
-            semantic: classify(semantic).to_sym,
-            source: Pathname.new(options.fetch(:source)),
-            target: Pathname.new(options.fetch(:target))
-          )
+      report(
+        Umwelt::Command::Convey.new.call(
+          phase_id: phase.to_i,
+          semantic: classify(semantic).to_sym,
+          source: Pathname.new(options.fetch(:source)),
+          target: Pathname.new(options.fetch(:target))
         )
+      )
     end
 
     private

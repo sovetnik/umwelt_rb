@@ -4,9 +4,7 @@ require 'hanami/interactor'
 require 'json'
 
 module Umwelt::Abstract::File
-  class Restore
-    include Hanami::Interactor
-
+  class Restore < Umwelt::Abstract::Interactor
     expose :struct
 
     def initialize(path: '.umwelt',
@@ -30,15 +28,9 @@ module Umwelt::Abstract::File
     end
 
     def struct(struct_hash)
-      clean @mapper.new.call(struct_hash)
-    end
-
-    def clean(result)
-      if result.success?
-        result.struct
-      else
-        error! result.errors
-      end
+      prove(
+        @mapper.new.call(struct_hash)
+      ).struct
     end
 
     def umwelt_root_path
