@@ -34,15 +34,21 @@ Main executable is `umwelt`
 ```shell
  umwelt help
 Commands:
-  umwelt clone PROJECT                        # Clone project from remote Umwelt
+  umwelt clone PROJECT/USERNAME               # Clone project from remote Umwelt
   umwelt convey PHASE SEMANTIC                # Convey Phase in Semantic from local Umwelt
   umwelt example                              # Create example Umwelt
   umwelt pull                                 # Pull project from remote Umwelt
   umwelt version
   ```
 
-In first release only two command is implemented: example and convey.
-To begin, call `example`, it will copy source files in `./.umwelt`
+In 0.2 version only three command is implemented: `example`, `clone` and `convey`.
+
+If you have project on [umwelt.dev](http://umwelt.dev), clone it and convey.
+```shell
+umwelt clone 'username/projectname'
+```
+
+If not, call `example`, it will copy source files in `./.umwelt`
 ```shell
 umwelt example
 ```
