@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Umwelt::CLI
-  class Commands::Clone < Hanami::CLI::Command
+module Umwelt::CLI::Commands
+  class Clone < Hanami::CLI::Command
     desc 'Clone project from remote Umwelt'
 
     argument :user_project,
@@ -18,14 +18,21 @@ module Umwelt::CLI
       puts options.inspect
       puts options.fetch(:target)
 
-      result = Umwelt::Command::Clone
+      report(
+        Umwelt::Command::Clone
                .new(path: options.fetch(:target))
                .call(user_project: user_project)
+      )
+    end
+
+    private
+
+    def report(result)
       if result.success?
         result.written_paths.each_pair do |key, value|
           puts "#{key} => (#{value})"
         end
-        puts "#{result.result.keys.count} files written succesfully"
+        puts "#{result.written_paths.keys.count} files written succesfully"
       else
         result.errors.each { |e| puts "Error: #{e}" }
       end

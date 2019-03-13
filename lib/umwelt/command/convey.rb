@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
 module Umwelt::Command
-  class Convey
-    include Hanami::Interactor
-    # TODO: change to dry-rb transaction here
-
-    expose :result
+  class Convey < Base
+    expose :written_paths
 
     def call(phase_id:, semantic:, source:, target:)
-      @result = imprint(
+      @written_paths = imprint(
         tree(source, phase_id), target, semantic
       )
     end
@@ -29,12 +26,11 @@ module Umwelt::Command
     end
 
     def imprint(tree, target, semantic)
-      result = Umwelt::Tree::Imprint.new(tree, location: target).call(semantic)
-      if result.success?
-        result.written_paths
-      else
-        error! result.errors
-      end
+      prove(
+        Umwelt::Tree::Imprint
+        .new(tree, location: target)
+        .call(semantic)
+      ).written_paths
     end
 
     def tree_fill(fragments)
@@ -42,43 +38,35 @@ module Umwelt::Command
     end
 
     def aggregate_history(episodes)
-      result = Umwelt::History::Aggregate.new.call(episodes)
-      if result.success?
-        result.fragments
-      else
-        error! result.errors
-      end
+      prove(
+        Umwelt::History::Aggregate
+        .new
+        .call(episodes)
+      ).fragments
     end
 
     def follow_history(continuity, source)
-      result = Umwelt::History::Follow
-               .new(path: source)
-               .call(continuity)
-      if result.success?
-        result.episodes
-      else
-        error! result.errors
-      end
+      prove(
+        Umwelt::History::Follow
+        .new(path: source)
+        .call(continuity)
+      ).episodes
     end
 
     def trace_history(history, phase_id)
-      result = Umwelt::History::Trace.new.call(history, phase_id)
-      if result.success?
-        result.continuity
-      else
-        error! result.errors
-      end
+      prove(
+        Umwelt::History::Trace
+        .new
+        .call(history, phase_id)
+      ).continuity
     end
 
     def restore_history(source)
-      restored = Umwelt::History::File::Restore
-                 .new(path: source)
-                 .call
-      if restored.success?
-        restored.struct
-      else
-        error! "Cannot restore history from '#{source}': #{restored.errors}"
-      end
+      prove(
+        Umwelt::History::File::Restore
+        .new(path: source)
+        .call
+      ).struct
     end
   end
 end

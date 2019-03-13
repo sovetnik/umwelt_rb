@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 module Umwelt::Command
-  class Clone
-    include Hanami::Interactor
-    # TODO: change to dry-rb transaction here
-
+  class Clone < Base
     expose :written_paths
 
     def initialize(path: '.umwelt')
@@ -15,7 +12,9 @@ module Umwelt::Command
     def call(user_project: '/')
       user_name, project_name = user_project.split('/')
 
-      project = get_project(project_name: project_name, user_name: user_name)
+      project = get_project(
+        project_name: project_name, user_name: user_name
+      )
       store_project!(project)
 
       history = get_history(project.project_id)
@@ -35,12 +34,17 @@ module Umwelt::Command
     end
 
     def episode_exist?(phase_id)
-      Umwelt::Episode::File::Restore.new(path: @path).call(phase_id).success?
+      Umwelt::Episode::File::Restore
+        .new(path: @path)
+        .call(phase_id)
+        .success?
     end
 
     def store_episode!(id, episode)
       @written_paths.merge! prove(
-        Umwelt::Episode::File::Store.new(path: @path).call(id, episode)
+        Umwelt::Episode::File::Store
+        .new(path: @path)
+        .call(id, episode)
       ).written_paths
     end
 
@@ -66,10 +70,6 @@ module Umwelt::Command
 
     def get_project(user_project)
       prove(Umwelt::Project::Get.new.call(user_project)).project
-    end
-
-    def prove(result)
-      result.success? ? result : error!(result.errors)
     end
   end
 end
