@@ -7,6 +7,7 @@ require 'unparser'
 module Umwelt
 end
 
+require 'umwelt/version'
 require 'umwelt/abstract'
 
 require 'umwelt/episode'
@@ -17,7 +18,6 @@ require 'umwelt/project'
 require 'umwelt/node'
 require 'umwelt/semantic'
 require 'umwelt/tree'
-require 'umwelt/version'
 
 require 'umwelt/command'
 require 'umwelt/cli'

@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module Umwelt::History
-  class Trace
-    include Hanami::Interactor
-
+  class Trace < Umwelt::Abstract::Interactor
     expose :continuity
 
     def initialize

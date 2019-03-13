@@ -1,0 +1,28 @@
+{
+  "project": {
+    "user_name": "sovetnik",
+    "project_name": "example",
+    "project_id": "1",
+    "description": "Durable Rubber Watch"
+  },
+  "phases": [
+    {
+      "id": 1,
+      "parent_id": null,
+      "merge_id": null,
+      "user_id": 1,
+      "finished_at": "2018-12-19 22:54:23 UTC",
+      "name": "initial_phase",
+      "description": "Effulgence immemorial unnamable hideous."
+    },
+    {
+      "id": 2,
+      "parent_id": 1,
+      "merge_id": null,
+      "user_id": 1,
+      "finished_at": "2018-12-19 22:54:23 UTC",
+      "name": "alfa",
+      "description": "Fungus amorphous madness noisome foetid."
+    }
+  ]
+}

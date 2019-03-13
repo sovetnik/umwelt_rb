@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module Umwelt::History
-  class Follow
-    include Hanami::Interactor
-
+  class Follow < Umwelt::Abstract::Interactor
     expose :episodes
 
     def initialize(

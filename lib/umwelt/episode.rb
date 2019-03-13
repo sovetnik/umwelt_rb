@@ -5,3 +5,4 @@ end
 
 require_relative './episode/file'
 require_relative './episode/mapper'
+require_relative './episode/get'

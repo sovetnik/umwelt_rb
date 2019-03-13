@@ -14,20 +14,7 @@ describe Umwelt::History::File::Store do
   let(:path) { Pathname.pwd / tmp / 'history.json' }
 
   let(:project) { Fabricate(:project) }
-
-  let(:finished) { Time.now }
-
-  let(:phase) do
-    Struct::Phase.new(
-      id: 13,
-      parent_id: 5,
-      merge_id: nil,
-      user_id: 1,
-      finished_at: finished,
-      name: 'feature',
-      description: 'implementing feature'
-    )
-  end
+  let(:phase) { Fabricate(:phase) }
 
   let(:history) do
     Struct::History.new(
@@ -56,7 +43,7 @@ describe Umwelt::History::File::Store do
 
     it ' store history in file' do
       _(path.exist?).must_equal false
-      subject
+      _(subject.written_paths.keys).must_include path
       _(path.exist?).must_equal true
     end
 

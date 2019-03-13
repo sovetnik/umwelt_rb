@@ -28,7 +28,7 @@ describe Umwelt::Project::File::Store do
 
     it ' store history in file' do
       _(path.exist?).must_equal false
-      subject
+      _(subject.written_paths.keys).must_include path
       _(path.exist?).must_equal true
     end
 

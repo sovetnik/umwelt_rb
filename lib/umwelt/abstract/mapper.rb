@@ -4,14 +4,14 @@ require 'hanami/interactor'
 # require_relative './structs/phase'
 # require_relative './structs/fragment'
 
-class Umwelt::Abstract::Mapper
-  include Hanami::Interactor
+module Umwelt::Abstract
+  class Mapper < Umwelt::Abstract::Interactor
+    expose :struct
 
-  expose :struct
-
-  def fill(struct, data)
-    struct.new(data)
-  rescue ArgumentError => e
-    error! [self.class.name, e.message, data]
+    def fill(struct, data)
+      struct.new(data)
+    rescue ArgumentError => e
+      error! [self.class.name, e.message, data]
+    end
   end
 end

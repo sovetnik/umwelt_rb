@@ -37,20 +37,26 @@ module Umwelt::CLI::Commands
         return
       end
 
-      @convey = Umwelt::Command::Convey.new.call(
-        phase_id: phase.to_i,
-        semantic: classify(semantic).to_sym,
-        source: Pathname.new(options.fetch(:source)),
-        target: Pathname.new(options.fetch(:target))
+      report(
+        Umwelt::Command::Convey.new.call(
+          phase_id: phase.to_i,
+          semantic: classify(semantic).to_sym,
+          source: Pathname.new(options.fetch(:source)),
+          target: Pathname.new(options.fetch(:target))
+        )
       )
+    end
 
-      if @convey.success?
-        @convey.result.each_pair do |key, value|
+    private
+
+    def report(result)
+      if result.success?
+        result.written_paths.each_pair do |key, value|
           puts "#{key} => (#{value})"
         end
-        puts "#{@convey.result.keys.count} files written succesfully"
+        puts "#{result.written_paths.keys.count} files written succesfully"
       else
-        @convey.errors.each { |e| puts "Error: #{e}" }
+        result.errors.each { |e| puts "Error: #{e}" }
       end
     end
   end

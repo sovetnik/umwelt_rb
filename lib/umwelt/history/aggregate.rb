@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module Umwelt::History
-  class Aggregate
-    include Hanami::Interactor
-
+  class Aggregate < Umwelt::Abstract::Interactor
     expose :fragments
 
     def initialize

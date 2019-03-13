@@ -18,28 +18,8 @@ describe Umwelt::Episode::File::Store do
 
   let(:finished) { Time.now }
 
-  let(:phase) do
-    Struct::Phase.new(
-      id: 13,
-      parent_id: 5,
-      merge_id: nil,
-      user_id: 1,
-      finished_at: Time,
-      name: 'feature',
-      description: 'implementing feature'
-    )
-  end
-
-  let(:fragment) do
-    Struct::Fragment.new(
-      id: 13,
-      abstract_id: 5,
-      context_id: nil,
-      kind: 'space',
-      body: 'foo',
-      note: 'foo bar baz'
-    )
-  end
+  let(:phase) { Fabricate(:phase) }
+  let(:fragment) { Fabricate(:fragment) }
 
   let(:episode) do
     Struct::Episode.new(
@@ -70,7 +50,7 @@ describe Umwelt::Episode::File::Store do
 
     it ' store episode in file' do
       _(path.exist?).must_equal false
-      subject
+      _(subject.written_paths.keys).must_include path
       _(path.exist?).must_equal true
     end
 

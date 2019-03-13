@@ -39,7 +39,7 @@ describe Umwelt::Command::Convey do
     end
 
     it 'exposes written_paths' do
-      _(subject.result).must_equal Hash[
+      _(subject.written_paths).must_equal Hash[
          temp_root / 'example/alfa_alive/gamma_alive/zeta_one.rb' => 50,
          temp_root / 'example/alfa_alive/gamma_alive/delta_alive.rb' => 53,
          temp_root / 'example/alfa_theta/gamma_theta/delta_theta.rb' => 53,
